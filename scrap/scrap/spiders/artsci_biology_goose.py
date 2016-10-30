@@ -6,7 +6,7 @@ from goose import Goose
 from scrap.items import Article
 
 
-class QuotesSpider(CrawlSpider):
+class ArtsciBiologyGooseSpider(CrawlSpider):
     name = "artsci_biology_goose"
     allowed_domains = ["concordia.ca"]
     start_urls = [

@@ -6,7 +6,7 @@ from scrap.spiders.body_parser import parse_body
 from scrap.items import Article
 
 
-class QuotesSpider(CrawlSpider):
+class ArtsciBiologySpider(CrawlSpider):
     name = "artsci_biology"
     allowed_domains = ["concordia.ca"]
     start_urls = [

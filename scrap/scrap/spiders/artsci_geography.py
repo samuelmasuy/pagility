@@ -4,7 +4,7 @@ from scrapy.linkextractors import LinkExtractor
 from scrap.spiders.body_parser import parse_body
 
 
-class QuotesSpider(CrawlSpider):
+class ArtsciGeographySpider(CrawlSpider):
     name = "artsci_geography"
     start_urls = [
         'http://www.concordia.ca/artsci/geography-planning-environment.html',

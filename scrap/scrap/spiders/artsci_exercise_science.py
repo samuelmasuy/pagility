@@ -4,7 +4,7 @@ from scrapy.linkextractors import LinkExtractor
 from scrap.spiders.body_parser import parse_body
 
 
-class QuotesSpider(CrawlSpider):
+class ArtsciExerciseScienceSpider(CrawlSpider):
     name = "artsci_exercise_science"
     start_urls = [
         'http://www.concordia.ca/artsci/exercise-science.html',
