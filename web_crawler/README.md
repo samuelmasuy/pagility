@@ -32,7 +32,7 @@ pip install goose-extractor
 
 Please see `crawl.py` for reference.
 
-Outputs in *jsonlines* format.
+Outputs in *jsonlines* format, in `./output` folder.
 
 ## Spiders
 

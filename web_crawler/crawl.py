@@ -18,12 +18,9 @@ spiders = {
 
 
 project_settings = get_project_settings()
-project_settings['FEED_URI'] = 'output_%(name)s.json'
-project_settings['FEED_FORMAT'] = 'jsonlines'
 project_settings['CLOSESPIDER_ITEMCOUNT'] = 15
 # project_settings['CLOSESPIDER_PAGECOUNT'] = 15
 project_settings['DEPTH_LIMIT'] = 3
-project_settings['LOG_LEVEL'] = 'INFO'
 project_settings['CONCURRENT_REQUESTS'] = 3
 
 configure_logging(project_settings)
