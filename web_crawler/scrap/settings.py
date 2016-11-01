@@ -3,7 +3,7 @@
 # Scrapy settings for scrap project
 #
 
-BOT_NAME = 'kirintero'
+BOT_NAME = 'pagility'
 
 SPIDER_MODULES = ['scrap.spiders']
 NEWSPIDER_MODULE = 'scrap.spiders'

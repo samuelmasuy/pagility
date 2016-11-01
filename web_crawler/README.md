@@ -19,7 +19,7 @@ pip install charade
 pip install chardet
 git clone https://github.com/misja/python-boilerpipe.git
 cd python-boilerpipe
-sudo python setup.py install
+python setup.py install
 cd ../
 rm -rf python-boilerpipe
 ```
