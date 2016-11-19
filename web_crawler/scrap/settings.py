@@ -15,7 +15,7 @@ SCHEDULER_MEMORY_QUEUE = 'scrapy.squeues.FifoMemoryQueue'
 
 # Set output
 FEED_EXPORT_ENCODING = 'utf-8'
-FEED_URI = 'output/%(name)s_%(time)s.jsonl'
+# FEED_URI = 'output/%(name)s_%(time)s.jsonl'
 FEED_FORMAT = 'jsonlines'
 
 # Change log level

@@ -1,4 +1,5 @@
 import argparse
+from datetime import datetime
 
 from twisted.internet import reactor, defer
 from scrapy.crawler import CrawlerRunner
@@ -25,7 +26,6 @@ def crawl():
         if v:
             yield runner.crawl(spider)
     reactor.stop()
-
 
 def get_cmd_args():
     """Helper function to get argument given to this program."""
@@ -63,6 +63,8 @@ if __name__ == '__main__':
     project_settings['DEPTH_LIMIT'] = args.depth_limit
     project_settings['CONCURRENT_REQUESTS'] = args.concurrent_requests
 
+    now = datetime.utcnow().strftime("%Y-%m-%dT%H-%M-%S")
+    project_settings['FEED_URI'] = 'output/{}/%(name)s.jsonl'.format(now)
     configure_logging(project_settings)
 
     runner = CrawlerRunner(project_settings)
