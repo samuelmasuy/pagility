@@ -20,9 +20,11 @@ FEED_FORMAT = 'jsonlines'
 
 # Change log level
 # LOG_LEVEL = 'INFO'
-LOG_LEVEL = 'DEBUG'
+LOG_LEVEL = 'INFO'
 
-# ITEM_PIPELINES = {'scrap.pipelines.JsonWithEncodingPipeline': 300}
+ITEM_PIPELINES = {
+    'scrap.pipelines.SentimentPipeline': 500,
+}
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'scrap (+http://www.yourdomain.com)'

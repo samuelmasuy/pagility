@@ -63,9 +63,9 @@ if __name__ == '__main__':
     args = get_cmd_args()
 
     spiders = {
-        'artsci_biology': False,
+        'artsci_biology': True,
         'artsci_biology_goose': False,
-        'artsci_biology_boiler': True,
+        'artsci_biology_xpath': False,
         'artsci_chemistry': False,
         'artsci_exercise_science': False,
         'artsci_geography': False,
