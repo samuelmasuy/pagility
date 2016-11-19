@@ -30,9 +30,19 @@ pip install goose-extractor
 
 ## Usage
 
+### Crawl
+
+Launch Scrapy, and crawl using the provided spiders.
+
 Please see `crawl.py` for reference.
 
 Outputs in *jsonlines* format, in `./output` folder.
+
+### Analyze
+
+Analysis on latest output.
+
+See `analysis.py`.
 
 ## Spiders
 
