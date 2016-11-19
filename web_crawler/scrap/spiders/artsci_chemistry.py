@@ -1,7 +1,10 @@
 from scrapy.spiders import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
 
-from scrap.spiders.body_parser import parse_body
+from boilerpipe.extract import Extractor
+
+from scrap.items import Article
+from scrap.spiders.utils import allowed_links
 
 
 class ArtsciChemistrySpider(CrawlSpider):
@@ -11,16 +14,15 @@ class ArtsciChemistrySpider(CrawlSpider):
     ]
 
     rules = (
-        Rule(LinkExtractor(), callback='parse_item', follow=True),
+        Rule(LinkExtractor(allow=allowed_links(start_urls[0])), callback='parse_item', follow=True),
     )
 
     def parse_item(self, response):
         title = response.css('title::text').extract_first()
 
-        body = parse_body(response)
+        extractor = Extractor(extractor='ArticleExtractor', html=response.body)
 
-        yield {
-                'url': response.url,
-                'title': title,
-                'body': body,
-        }
+        yield Article(title=title,
+                      text=extractor.getText(),
+                      url=response.url,
+                      field=self.name)

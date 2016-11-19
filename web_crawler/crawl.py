@@ -5,8 +5,8 @@ from scrapy.utils.project import get_project_settings
 
 spiders = {
     'artsci_biology': True,
-    'artsci_biology_goose': True,
-    'artsci_biology_boiler': True,
+    'artsci_biology_goose': False,
+    'artsci_biology_xpath': False,
     'artsci_chemistry': False,
     'artsci_exercise_science': False,
     'artsci_geography': False,
@@ -18,10 +18,10 @@ spiders = {
 
 
 project_settings = get_project_settings()
-project_settings['CLOSESPIDER_ITEMCOUNT'] = 15
+project_settings['CLOSESPIDER_ITEMCOUNT'] = 50
 # project_settings['CLOSESPIDER_PAGECOUNT'] = 15
-project_settings['DEPTH_LIMIT'] = 3
-project_settings['CONCURRENT_REQUESTS'] = 3
+project_settings['DEPTH_LIMIT'] = 5
+project_settings['CONCURRENT_REQUESTS'] = 10
 
 configure_logging(project_settings)
 

@@ -19,7 +19,8 @@ FEED_URI = 'output/%(name)s_%(time)s.jsonl'
 FEED_FORMAT = 'jsonlines'
 
 # Change log level
-LOG_LEVEL = 'INFO'
+# LOG_LEVEL = 'INFO'
+LOG_LEVEL = 'DEBUG'
 
 # ITEM_PIPELINES = {'scrap.pipelines.JsonWithEncodingPipeline': 300}
 

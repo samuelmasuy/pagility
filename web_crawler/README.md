@@ -38,31 +38,31 @@ Outputs in *jsonlines* format, in `./output` folder.
 
 * artsci_biology
  - http://www.concordia.ca/artsci/biology.html
+ - boilerpipe library
+* artsci_biology_xpath
+ - http://www.concordia.ca/artsci/biology.html
  - xpath selector
 * artsci_biology_goose
  - http://www.concordia.ca/artsci/biology.html
  - Goose Extractor library.
-* artsci_biology_boiler
- - http://www.concordia.ca/artsci/biology.html
- - boilerpipe library
 * artsci_chemistry
  - http://www.concordia.ca/artsci/chemistry.html
- - xpath selector
+ - boilerpipe library
 * artsci_exercise_science
  - http://www.concordia.ca/artsci/exercise-science.html
- - xpath selector
+ - boilerpipe library
 * artsci_geography
  - http://www.concordia.ca/artsci/geography-planning-environment.html
- - xpath selector
+ - boilerpipe library
 * artsci_math
  - http://www.concordia.ca/artsci/math-stats.html
- - xpath selector
+ - boilerpipe library
 * artsci_physics
  - http://www.concordia.ca/artsci/physics.html
- - xpath selector
+ - boilerpipe library
 * artsci_psychology
  - http://www.concordia.ca/artsci/psychology.html
- - xpath selector
+ - boilerpipe library
 * artsci_science_college
  - http://www.concordia.ca/artsci/science-college.html
- - xpath selector
+ - boilerpipe library

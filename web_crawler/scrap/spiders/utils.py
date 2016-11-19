@@ -1,4 +1,6 @@
 import re
+from urlparse import urlparse
+from os.path import splitext, basename
 
 
 def parse_body(response):
@@ -18,3 +20,9 @@ def parse_body(response):
     body = ' '.join(body)
     body = re.sub('\s+', ' ', body)
     return body
+
+
+def allowed_links(base_url):
+    disassembled = urlparse(base_url)
+    _, ext = splitext(basename(disassembled.path))
+    return base_url.replace(ext, '') + '*'
