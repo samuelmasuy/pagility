@@ -9,13 +9,13 @@ spiders = {
     'artsci_biology': True,
     'artsci_biology_goose': False,
     'artsci_biology_xpath': False,
-    'artsci_chemistry': False,
-    'artsci_exercise_science': False,
-    'artsci_geography': False,
-    'artsci_math': False,
-    'artsci_physics': False,
-    'artsci_psychology': False,
-    'artsci_science_college': False,
+    'artsci_chemistry': True,
+    'artsci_exercise_science': True,
+    'artsci_geography': True,
+    'artsci_math': True,
+    'artsci_physics': True,
+    'artsci_psychology': True,
+    'artsci_science_college': True,
 }
 
 
@@ -35,7 +35,7 @@ def get_cmd_args():
         "--item-count",
         dest="item_count",
         type=int,
-        default=50,
+        default=30,
         help="Limit the number of items (website) to crawl."
     )
     parser.add_argument(
