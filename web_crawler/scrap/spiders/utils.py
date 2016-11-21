@@ -4,6 +4,7 @@ from os.path import splitext, basename
 
 
 def parse_body(response):
+    """Parse html response text to retrieve the main content, using Xpath"""
     body = response.xpath("""//text()[normalize-space()
                                       and not(ancestor::div[contains (@class, 'c-back-to-top')])
                                       and not(ancestor::div[contains (@class, 'c-topnav top-links')])
@@ -23,6 +24,12 @@ def parse_body(response):
 
 
 def allowed_links(base_url):
+    """
+    Given base url, retrieve the root path.
+    It basically removes the extension in the url.
+    Example: http://www.concordia.ca/artsci/biology.html ->
+             /artsci/biology
+    """
     disassembled = urlparse(base_url)
     _, ext = splitext(basename(disassembled.path))
-    return base_url.replace(ext, '') + '*'
+    return disassembled.path.replace(ext, '')
