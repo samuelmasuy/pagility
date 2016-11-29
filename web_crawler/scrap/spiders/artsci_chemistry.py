@@ -9,6 +9,7 @@ from scrap.spiders.utils import allowed_links
 
 class ArtsciChemistrySpider(CrawlSpider):
     name = "artsci_chemistry"
+    allowed_domains = ["concordia.ca"]
     start_urls = [
         'http://www.concordia.ca/artsci/chemistry.html',
     ]
