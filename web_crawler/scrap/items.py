@@ -14,4 +14,4 @@ class Article(scrapy.Item):
     text = scrapy.Field()
     url = scrapy.Field()
     field = scrapy.Field()
-    sentiment = scrapy.Field()
+    # sentiment = scrapy.Field()

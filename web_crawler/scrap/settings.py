@@ -23,7 +23,7 @@ FEED_FORMAT = 'jsonlines'
 LOG_LEVEL = 'INFO'
 
 ITEM_PIPELINES = {
-    'scrap.pipelines.SentimentPipeline': 500,
+    # 'scrap.pipelines.SentimentPipeline': 500,
 }
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
