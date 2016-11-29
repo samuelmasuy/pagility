@@ -21,8 +21,10 @@ os.chdir("sample_output")
 for f in glob.glob("*.jsonl"):
 	with jsonlines.open(f) as reader:
 		for obj in reader:
-			print("Field: {}".format(obj['field']))
-			print("url: {}".format(obj['url']))
-			print("title: {}".format(obj['title']))
-			print("text: {}".format(obj['text']))
+			# WARNING: The string in obj are encoded with unicode.
+			print(u"Field: {}".format(obj['field']))
+			print(u"url: {}".format(obj['url']))
+			print(u"title: {}".format(obj['title']))
+			print(u"text: {}".format(obj['text']))
+
 ```
