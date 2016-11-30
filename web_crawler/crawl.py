@@ -17,7 +17,7 @@ spiders = {
     'artsci_physics': False,
     'artsci_psychology': False,
     'artsci_science_college': False,
-    'artsci_mistery': True
+    'artsci_mystery': True
 }
 
 

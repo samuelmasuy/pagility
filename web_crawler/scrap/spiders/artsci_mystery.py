@@ -7,8 +7,8 @@ from scrap.items import Article
 from scrap.spiders.utils import allowed_links
 
 
-class ArtsciMisterySpider(CrawlSpider):
-    name = "artsci_mistery"
+class ArtsciMysterySpider(CrawlSpider):
+    name = "artsci_mystery"
     allowed_domains = ["concordia.ca"]
     start_urls = [
         'https://www.concordia.ca/artsci/science-college/about/life-at-the-college.html',
