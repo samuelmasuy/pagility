@@ -7,16 +7,17 @@ from scrapy.utils.log import configure_logging
 from scrapy.utils.project import get_project_settings
 
 spiders = {
-    'artsci_biology': True,
+    'artsci_biology': False,
     'artsci_biology_goose': False,
     'artsci_biology_xpath': False,
-    'artsci_chemistry': True,
-    'artsci_exercise_science': True,
-    'artsci_geography': True,
-    'artsci_math': True,
-    'artsci_physics': True,
-    'artsci_psychology': True,
-    'artsci_science_college': True,
+    'artsci_chemistry': False,
+    'artsci_exercise_science': False,
+    'artsci_geography': False,
+    'artsci_math': False,
+    'artsci_physics': False,
+    'artsci_psychology': False,
+    'artsci_science_college': False,
+    'artsci_mistery': True
 }
 
 
