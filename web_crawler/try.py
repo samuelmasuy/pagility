@@ -4,6 +4,8 @@ import glob, os
 import sys
 import jsonlines
 
+from afinn import Afinn
+afinn = Afinn()
 
 """
 get_score
@@ -11,8 +13,14 @@ get_score
 for now, just return length
 we're supposed to do sentiment analysis here and return the text's score
 """
-def get_score(text):
-    return len(text)
+def get_score(title, text):
+
+    # title_score = afinn.score(title)
+    text_score = afinn.score(text)
+    # sum_score = title_score + text_score
+    print(title,text)
+    print(":", text_score)
+    return text_score
 
 
 PYTHONIOENCODING="UTF-8"
@@ -44,7 +52,7 @@ for f in glob.glob("*.jsonl"):
             text = format(obj['text'])
 
             try:
-                department_scores[field] += get_score(text)         # call method to get scores for text
+                department_scores[field] += get_score(title, text)         # call method to get scores for text
             except KeyError:  # department score not initialized yet
                 department_scores[field] = 0         # init
 
