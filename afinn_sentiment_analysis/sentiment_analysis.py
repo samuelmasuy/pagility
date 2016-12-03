@@ -10,7 +10,8 @@ import jsonlines
 def get_score(title, text, afinn):
     doc_data = title + ' ' + text
     #doc_data = doc_data.encode("ascii", "ignore")
-    token_score = afinn.score(doc_data)  # calculating the afinn score for the document text
+    #token_score = afinn.score(doc_data)  # calculating the afinn score for the document text (Regex patterns)
+    token_score = afinn.score_with_wordlist(text)  # calculating the afinn score for the document text using the wordlist
     return token_score
 
 
@@ -33,7 +34,7 @@ def calculate_department_scores():
                 text = format(obj['text'])
 
                 doc_score = get_score(title, text, afinn)
-                doc_length = len(title + text)
+                doc_length = len(title + " " + text)
                 doc_tuple = (url, doc_score, doc_length)
                 if dep not in department_scores:  # checking if the department is present in the d
                     department_scores[dep] = [doc_tuple]

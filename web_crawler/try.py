@@ -21,8 +21,8 @@ we're supposed to do sentiment analysis here and return the text's score
 """
 def get_score(field, title, text):
 
-    # title_score = afinn.score(title)
-    token_score = afinn.score(text)
+    # title_score = afinn.score(title)  # using regex patterns
+    token_score = afinn.score_with_wordlist(text)  # using word_list
     # sum_score = title_score + text_score
     # print(title)
 
