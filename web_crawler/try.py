@@ -71,9 +71,8 @@ for f in glob.glob("*.jsonl"):
                 department_lengths[field] = 0
                 department_page_count[field] = 0
 
-
             score, length = get_score(field, title, text)         # call method to get scores for text
-            department_scores[field] += score         # call method to get scores for text
+            department_scores[field] += score
             department_lengths[field] += length
             department_page_count[field] += 1
 
