@@ -4,15 +4,15 @@ query
 parameters:
 [-k k]      [k value for BM25 algorithm]
 [-b b]      [value for BM25 algorithm]
-[-q query] 
+[-q query]
 
 if no k,b passed, defaults will be used
 
-o   Allows user to run one query by passing a query as a parameter, 
+o   Allows user to run one query by passing a query as a parameter,
 or running the script without parameters which loops to accept and process queries
 
-o   Involves creating a QueryObject that holds the index loaded from memory. 
-This improves performance if program is ran interactively (loop), because the index is loaded once to memory, 
+o   Involves creating a QueryObject that holds the index loaded from memory.
+This improves performance if program is ran interactively (loop), because the index is loaded once to memory,
 and can be used to process queries until user stops program
 
 """
@@ -57,7 +57,7 @@ class QueryObject:
             except KeyError:
                 temp_postings = list()
 
-            or_postings = temp_postings  
+            or_postings = temp_postings
 
             # print(term_list)
             for t in term_list:
@@ -82,11 +82,11 @@ class QueryObject:
 
     def run_ranked_query(self, query):
         index = self.index
-        q_terms = query.split() 
+        q_terms = query.split()
 
         err = ''
         try:
-            result = QueryObject.query_rank(index, q_terms)       
+            result = QueryObject.query_rank(index, q_terms)
         except KeyError:
             result = list()
             err = "no documents found"
@@ -99,7 +99,7 @@ compress_query
 remove weird things
 remove numbers
 case-fold
-remove stop-words 
+remove stop-words
 """
 def compress_query(q_string):
 
@@ -181,7 +181,7 @@ args = parser.parse_args()
 with open('doc_lengths.p', 'rb') as fp:
     doc_length_dict = pickle.load(fp)
 
-N = len(doc_length_dict) 
+N = len(doc_length_dict)
 
 ### print "N: ", N
 
