@@ -32,6 +32,9 @@ from nltk.stem import *
 # index_path = './blocks/index.txt'
 index_path = './index.txt'
 
+
+stem = True
+
 class QueryObject:
 
     def __init__(self, index_file):
@@ -124,20 +127,31 @@ def compress_query(q_string):
     # add nltk stop words, for a total of 304
     stop_words += set(stopwords.words("english"))
 
-    punctuations = '!"#$%&\'()*+,./:;<=>?@[\\]^_`{|}~'             # remove punctuations and weird things in query terms
+    punctuations = '!?"#$%&\'()*+,./:;<=>?@[\\]^_`{|}~'             # remove punctuations and weird things in query terms
 
     temp = q_string.split()
+    removed_stop_words = []
 
     q_string_list = []
     for t in temp:
         t = t.translate(None, punctuations)  # remove punctuations
+
+        if t in stop_words:
+            removed_stop_words.append(t)
+
         if not t.isdigit() and t not in stop_words:
             t = t.lower()                                       # case-fold
-            t = stemmer.stem(t)                                 # stem
+            if stem:
+                t = stemmer.stem(t)                                 # stem
             q_string_list.append(t)
 
     q_string = " ".join(q_string_list)
-    # print("stemmed: ", q_string)
+    if len(removed_stop_words) > 0:
+        print("Removed stop words: ", removed_stop_words)
+    if stem:
+        print("stemmed: ", q_string_list)
+
+
     return q_string
 
 
@@ -229,7 +243,8 @@ while True:
             else:
                 print "Displaying top", t, ":"
             for doc in top_docs:
-                print("{}     :     {}".format(doc, RSVd[doc]))
+                # print("{:<60} : {:<15}".format(doc, RSVd[doc]))
+                print("%-85s : %-15s" % (doc, str(RSVd[doc])))
         else:
             print("No results found")
     except:
