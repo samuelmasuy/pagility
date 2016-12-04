@@ -43,7 +43,7 @@ index = {}
 # get all the .jsonl files and accumulate all term, docID pairs
 
 tokens_list = []
-docs_dir = "../sample_output"
+docs_dir = "../output_500_itemcount"
 index_file = "index.txt"
 
 doc_ctr = 0
@@ -56,41 +56,49 @@ department_doc_count = {}
 # do for each file in the collection
 # collect tokens
 
+doc_list = []
+
 for f in os.listdir(docs_dir):
     if f.endswith(".jsonl"):
         with jsonlines.open(os.path.join(docs_dir, f)) as reader:
             for obj in reader:
                 field = format(obj['field'])
-                url = format(obj['url'])
-                title = format(obj['title'])
-                text = format(obj['text'])
-
-                if field in department_doc_count:
-                    department_doc_count[field] += 1
+                # url_string = format(obj['url'])
+                url_string = format(obj['url'])
+                real_url_path = url_string.split("://")[1]
+                if real_url_path in doc_list:       # avoid http:// and https:// version of same doc being recorded twice
+                    pass
                 else:
-                    department_doc_count[field] = 1
+                    title = format(obj['title'])
+                    text = format(obj['text'])
+                    url = real_url_path
 
-                data = title + " " + text
-                terms = data.encode('ascii', 'ignore')
-                terms = nltk.word_tokenize(terms)   # tokenize SGM doc to a list
-                # ###### COMPRESSION #####
-                terms = compress.remove_weird_things(terms)         # 1 remove punctuations, escape characters, etc
-                terms = compress.remove_numbers(terms)              # 2 remove numbers
-                terms = compress.case_folding(terms)                # 3 convert all to lowercase
-                terms = [t for t in terms if t not in stop_words]   # 4  remove stop words
+                    if field in department_doc_count:
+                        department_doc_count[field] += 1
+                    else:
+                        department_doc_count[field] = 1
 
-                all_terms += terms
+                    data = title + " " + text
+                    terms = data.encode('ascii', 'ignore')
+                    terms = nltk.word_tokenize(terms)   # tokenize SGM doc to a list
+                    # ###### COMPRESSION #####
+                    terms = compress.remove_weird_things(terms)         # 1 remove punctuations, escape characters, etc
+                    terms = compress.remove_numbers(terms)              # 2 remove numbers
+                    terms = compress.case_folding(terms)                # 3 convert all to lowercase
+                    terms = [t for t in terms if t not in stop_words]   # 4  remove stop words
 
-                terms = compress.snowball_stemmer(terms)            # 5 stem words
+                    all_terms += terms
 
-                doc_length = len(terms)
-                doc_length_dict[url] = doc_length                   # save doc length in a dict
-                doc_ctr += 1
+                    terms = compress.snowball_stemmer(terms)            # 5 stem words
 
-                # collect all term,docID pairs to a list
-                for term in terms:
-                    token_obj = {"term": term, "docID": url}
-                    tokens_list.append(token_obj)
+                    doc_length = len(terms)
+                    doc_length_dict[url] = doc_length                   # save doc length in a dict
+                    doc_ctr += 1
+
+                    # collect all term,docID pairs to a list
+                    for term in terms:
+                        token_obj = {"term": term, "docID": url}
+                        tokens_list.append(token_obj)
 
 print("N: " + str(doc_ctr))
 
