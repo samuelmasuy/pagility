@@ -74,7 +74,7 @@ for f in os.listdir(docs_dir):
                 terms = data.encode('ascii', 'ignore')
                 terms = nltk.word_tokenize(terms)   # tokenize SGM doc to a list
                 # ###### COMPRESSION #####
-                terms = compress.remove_weird_things(terms)         # 1 remove puntuations, escape characters, etc
+                terms = compress.remove_weird_things(terms)         # 1 remove punctuations, escape characters, etc
                 terms = compress.remove_numbers(terms)              # 2 remove numbers
                 terms = compress.case_folding(terms)                # 3 convert all to lowercase
                 terms = [t for t in terms if t not in stop_words]   # 4  remove stop words
@@ -146,5 +146,13 @@ with open('doc_lengths.p','wb') as fp:
     pickle.dump(doc_length_dict, fp)
 
 
+# get number of non-positional postings
+nonp_postings = 0
+
+for _term in index:
+    nonp_postings += len(index[_term])
+
 print("Doc length ave: ", doc_len_ave)
+print("Index size: ", len(index))
+print("Non-positional postings: ", nonp_postings)
 
