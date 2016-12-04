@@ -17,7 +17,7 @@ def get_score(title, text, afinn):
 
 # function calculates the total afinn score for each department
 def calculate_department_scores():
-    os.chdir("../sample_output")
+    os.chdir("../output_500_itemcount")
     afinn = Afinn()
     afinn.setup_from_file(os.path.join(afinn.data_dir(), 'AFINN-111.txt'), word_boundary=False)
 
