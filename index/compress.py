@@ -12,6 +12,7 @@ import collections
 # import re
 import pprint
 # import string
+from nltk.stem import *
 
 
 # removes punctuations, linefeed/carriage return and other non-alphanumeric characters
@@ -81,8 +82,10 @@ def remove_stop_words(token_list, num):
     # processed_words = [w for w in words if w not in stop_words]
     # return processed_words
 
-def p_stemmer(terms):
+
+def snowball_stemmer(terms):
     stemmer = PorterStemmer()
+    # stemmer = SnowballStemmer("english")
     stemmed_terms = [stemmer.stem(term) for term in terms]
 
     return stemmed_terms

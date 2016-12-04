@@ -23,8 +23,11 @@ import pprint
 # import string
 from nltk.corpus import stopwords
 
+
 import filestuff
 import ranking
+
+from nltk.stem import *
 
 # index_path = './blocks/index.txt'
 index_path = './index.txt'
@@ -99,9 +102,12 @@ def compress_query(q_string):
 
     # STOP LIST, hand-filtered to remove needed words such as ['company']
 
-    stop_words = ['the', 'and', 'of', 'in', 'a', 'to', 'for', 'on', 'is', 'research', 'with', 'at',
-                  'j', 'are', 'as', 'students', 'by', 's', 'or', 'that', 'an', 'from', 'm', 'pubmed',
-                  'science', 'university', 'content', 'be', 'this', 'will']
+    stop_words = ['the', 'and', 'of', 'in', 'a', 'to', 'for', 'on', 'is', 'with', 'at',
+                  'j', 'are', 'as', 'by', 's', 'or', 'that', 'an', 'from', 'm', 'pubmed',
+                  'content', 'be', 'this', 'will']
+
+    # stemmer = SnowballStemmer("english")
+    stemmer = PorterStemmer()
 
     # add nltk stop words, for a total of 304
     stop_words += set(stopwords.words("english"))
@@ -112,11 +118,15 @@ def compress_query(q_string):
 
     q_string_list = []
     for t in temp:
+        t = t.translate(None, punctuations)  # remove punctuations
         if not t.isdigit() and t not in stop_words:
-            t = t.translate(None, punctuations)                 # remove punctuations
-            q_string_list.append(t.lower())                     # case-fold
+            t = t.lower()                                       # case-fold
+            t = stemmer.stem(t)                                 # stem
+            q_string_list.append(t)
 
     q_string = " ".join(q_string_list)
+
+    print("stemmed: ", q_string)
 
     return q_string
 
@@ -134,8 +144,6 @@ def get_query_results(q_string, q_object):
         print(err)
         return err
 
-
-
 # MAIN
 ############# QUERY ######################
 parser = argparse.ArgumentParser(description='query', add_help=False)
@@ -145,13 +153,11 @@ parser.add_argument("-b", "--b")
 parser.add_argument("-t", "--top")
 args = parser.parse_args()
 
-
 # load document lengths used for ranking
 with open('doc_lengths.p', 'rb') as fp:
     doc_length_dict = pickle.load(fp)
 
 N = len(doc_length_dict) 
-
 
 ### print "N: ", N
 
@@ -211,7 +217,7 @@ while True:
             if results_count < t:
                 print "Displaying top", results_count, ":"
             else:
-                print "Displaying top", t , ":"
+                print "Displaying top", t, ":"
             for doc in top_docs:
                 print("{}     :     {}".format(doc, RSVd[doc]))
         else:
@@ -222,56 +228,3 @@ while True:
     print("----------------")
     if run_forever == False:
         break
-
-
-
-    # q1 = QueryObject(index_path)
-    # _q_string = args.query
-    # _q_string = compress_query(_q_string)
-    # doc_results = get_query_results(_q_string, q1)
-    # results_count = len(doc_results)
-    #
-    # # print("results")
-    # # print(doc_results)
-    #
-    # ################ RANKING ####################
-    #
-    # # Ld -> doc_length_dict {'10001':2,'10002':3}
-    # # Lave -> doc_len_ave
-    #
-    # """
-    # k: positive tuning parameter that calibrates tftd (document term frequency)
-    #     k = 0 ;binary model- no term frequency
-    #     large k value corresponds to using raw term frequency
-    #
-    # b: scaling by document length
-    #     0 <= b <= 1
-    #     b= 1 ; fully scaling the term weight by doc length
-    #     b = 0; no length normalization
-    #
-    # t: top t documents
-    # """
-    #
-    # # k = 1
-    # # b = 0.5
-    #
-    # # try:
-    #
-    # RSVd = ranking.get_rsvd(_q_string, doc_results, N, doc_length_dict, doc_len_ave, k, b, q1.index, t)
-    #
-    # # sort results by the ranking
-    # top_docs = sorted(RSVd, key=RSVd.__getitem__, reverse=True)
-    #
-    # print str(results_count) + " found "
-    # if results_count > 0:
-    #     if t >= results_count:
-    #         print "Displaying top", t, ":"
-    #     else:
-    #         print "Displaying top", results_count, ":"
-    #
-    #     for doc in top_docs:
-    #         print("{}     :     {}".format(doc, RSVd[doc]))
-    #
-    # else:
-    #     print("No results found")
-    #     print("----------------")
