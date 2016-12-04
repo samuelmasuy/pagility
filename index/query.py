@@ -127,7 +127,7 @@ def compress_query(q_string):
     # add nltk stop words, for a total of 304
     stop_words += set(stopwords.words("english"))
 
-    punctuations = '!"#$%&\'()*+,./:;<=>?@[\\]^_`{|}~'             # remove punctuations and weird things in query terms
+    punctuations = '!?"#$%&\'()*+,./:;<=>?@[\\]^_`{|}~'             # remove punctuations and weird things in query terms
 
     temp = q_string.split()
     removed_stop_words = []
