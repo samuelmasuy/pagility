@@ -99,11 +99,11 @@ def three_way_classifier(scores):
     sorted_by_score = sorted(dep_scores_classified, key=lambda x: x[1])
     return sorted_by_score
 
-dep_scores = calculate_department_scores()
-normalized_scores = normalize_scores(dep_scores)
-sorted_dep = three_way_classifier(normalized_scores)
 
-for d in sorted_dep:
-    print(d[0], ":", d[1], ":", d[2])
+if __name__ == '__main__':
+    dep_scores = calculate_department_scores()
+    normalized_scores = normalize_scores(dep_scores)
+    sorted_dep = three_way_classifier(normalized_scores)
 
-
+    for d in sorted_dep:
+        print(d[0], ":", d[1], ":", d[2])
