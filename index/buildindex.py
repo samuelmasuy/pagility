@@ -16,27 +16,17 @@ import compress
 from nltk.corpus import stopwords
 
 
-# STOP LIST - 150
-stop_words = ['research', 'students', 'science', 'university', 'c', 'de', 'concordia', 'p', 'program', 'faculty',
-              'department', 'environmental', 'student', 'r', 'study', 'course', 'credits', 'b', 'biology', 'h',
-              'studies', 'courses', 'graduate', 'new', 'phd', 'urban', 'chemistry', 'k', 'l', 'one', 'may',
-              'biol', 'physics', 'g', 'information', 'montreal', 'brain', 'work', 'n', 'amir', 'psychology',
-              'canada', 'also', 'development', 'dr', 'journal', 'jaeger', 'environment', 'e', 'health', 'rats',
-              'pfaus', 'college', 'human', 'planning', 'sleep', 'use', 'geography', 'transportation', 'clinical',
-              'jg', 'la', 'effects', 'programs', 'undergraduate', 'canadian', 'change', 'ecology', 'publications',
-              'honours', 'using', 'chem', 'analysis', 'academic', 'conference', 'pm', 'sciences', 'cell', 'professor',
-              'degree', 'pp', 'systems', 'behav', 'international', 'year', 'interests', 'teaching', 'msc', 'v', 'life',
-              'well', 'time', 'back', 'exercise', 'patterson', 'take', 'top', 'molecular', 'lab', 'role', 'current', 'w',
-              'social', 'assessment', 'rat', 'physical', 'system', 'must', 'res', 'sexual', 'engineering', 'pdf', 'et', 'two',
-              'climate', 'project', 'education', 'f', 'arts', 'bsc', 'landscape', 'thesis', 'processes', 'public', 'abstract',
-              'following', 'association', 'neuroscience', 'full', 'energy', 'training', 'applications', 'areas', 'first',
-              'community', 'cognitive', 'people', 'natural', 'montral', 'years', 'including', 'room', 'include', 'impact',
-              'field', 'activities', 'november', 'protein', 'data', 'quantum']
+# STOP LIST - 30
+stop_words = ['the',  'and', 'of', 'in', 'to', 'a', 'for', 'is', 'on', 'with', 'that', 'research',
+              'at', 'as', 'by', 'are', 'from', 'this', 'an', 'be', 'will', 'concordia', 'university',
+              'j', 'de', 'we', 'students', 'i', 'or', 'science']
 
 # add nltk stop words
 unicode_sw = stopwords.words("english")
 str_sw = [str(sw) for sw in unicode_sw]
 stop_words += str_sw
+
+print(len(unicode_sw ))
 
 index = {}
 
@@ -103,7 +93,7 @@ for f in os.listdir(docs_dir):
 print("N: " + str(doc_ctr))
 
 # do only once to get stop words list -----------------------------
-# stop_words = compress.collect_stop_words(all_terms, 150)
+# stop_words = compress.collect_stop_words(all_terms, 30)
 # print("stop words")
 # pprint.pprint(stop_words)
 # -----------------------------------------------------------------
